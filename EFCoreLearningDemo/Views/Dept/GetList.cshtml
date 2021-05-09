@@ -1,0 +1,37 @@
+﻿@model IEnumerable<EFCoreLearningDemo.Entities.Dept>
+@{
+    ViewData["Title"] = "GetList";
+}
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Department List
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-sm">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Location</th>
+                    </tr>
+                </thead>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Name</td>
+                            <td>@item.Loc</td>
+                        </tr>
+                    }
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer">
+            <a asp-controller="Dept" asp-action="Index">Back</a>
+        </div>
+    </div>
+</div>
+
