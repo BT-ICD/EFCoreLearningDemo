@@ -1,4 +1,7 @@
 using EFCoreLearningDemo.Data;
+using EFCoreLearningDemo.Interfaces;
+using EFCoreLearningDemo.Models;
+using EFCoreLearningDemo.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +33,7 @@ namespace EFCoreLearningDemo
             options.UseSqlServer(Configuration.GetConnectionString("LearningDBContext"))
                 );
             services.AddDatabaseDeveloperPageExceptionFilter();
+            services.AddScoped<ICustomer, CustomerRepository>();
 
         }
 
