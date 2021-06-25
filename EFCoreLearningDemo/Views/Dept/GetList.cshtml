@@ -14,30 +14,40 @@
                 </div>
             </div>
         </div>
-        <div class="card-body">
-            <table class="table table-bordered table-sm">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Location</th>
-                    </tr>
-                </thead>
+        <form method="post">
+            <div class="card-body">
+                <table class="table table-bordered table-sm">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Location</th>
+                            <th>Delete</th>
+                            <th>Temp</th>
+                        </tr>
+                    </thead>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>@item.Id</td>
-                            <td>@item.Name</td>
-                            <td>@item.Loc</td>
-                        </tr>
-                    }
-                <tbody>
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.Loc</td>
 
-                </tbody>
-            </table>
-        </div>
+                    <td><button asp-controller="Dept" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you sure?')" >Delete</button> </td>
+                    <td><button asp-controller="Dept" asp-action="Tempmethod" asp-route-id="@item.Id">Temp</button> </td>
+
+                </tr>
+                    }
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </form>
         <div class="card-footer">
             <a asp-controller="Dept" asp-action="Index">Back</a>
+            <form>
+                <button asp-action="Delete" type="submit" >Delete</button>
+            </form>
         </div>
     </div>
 </div>

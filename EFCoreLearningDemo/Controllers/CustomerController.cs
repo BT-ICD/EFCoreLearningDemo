@@ -19,5 +19,6 @@ namespace EFCoreLearningDemo.Controllers
             var result = customer.GetList();
             return View(result);
         }
+       
     }
 }

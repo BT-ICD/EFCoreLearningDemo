@@ -11,6 +11,7 @@ namespace EFCoreLearningDemo.Data
     {
         public LearningDbContext(DbContextOptions<LearningDbContext> options):base(options)
         {
+            var data = options;
 
         }
         public DbSet<Dept> Depts{ get; set; }
