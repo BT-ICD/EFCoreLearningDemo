@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 
 namespace EFCoreLearningDemo.Controllers
 {
+    /// <summary>
+    /// Learning Reference for Model validation
+    /// https://www.youtube.com/watch?v=aDRC_IgwmH8
+    /// </summary>
     public class DeptController : Controller
     {
         private readonly LearningDbContext context;
@@ -57,5 +61,22 @@ namespace EFCoreLearningDemo.Controllers
            //For reference post call from list of actions
             return RedirectToAction("GetList");
         }
+        public IActionResult Add()
+        {
+            return View();
+
+        }
+        [HttpPost]
+        public IActionResult Add(Dept dept)
+        {
+            if (ModelState.IsValid)
+            {
+                this.context.Depts.Add(dept);
+                this.context.SaveChanges();
+                return RedirectToAction("GetList"); 
+            }
+            return View();
+        }
+
     }
 }
