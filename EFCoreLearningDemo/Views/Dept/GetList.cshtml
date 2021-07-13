@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "GetList";
 }
+<script src="~/lib/jquery/dist/jquery.js"></script>
 <div class="container">
     <div class="card">
         <div class="card-header">
@@ -10,7 +11,8 @@
                     Department List
                 </div>
                 <div class="col-md-2 ">
-                    <a   class="btn btn-primary float-right"  asp-action="Add">New</a>
+                    <a class="btn btn-primary float-right" asp-action="Add">New</a>
+                    <input id="test" type="button" value="jQuery Demo" />
                 </div>
             </div>
         </div>
@@ -28,15 +30,15 @@
                     </thead>
                     @foreach (var item in Model)
                     {
-                <tr>
-                    <td>@item.Id</td>
-                    <td>@item.Name</td>
-                    <td>@item.Loc</td>
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Name</td>
+                            <td>@item.Loc</td>
 
-                    <td><button asp-controller="Dept" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you sure?')" >Delete</button> </td>
-                    <td><button asp-controller="Dept" asp-action="Tempmethod" asp-route-id="@item.Id">Temp</button> </td>
+                            <td><button asp-controller="Dept" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you sure?')">Delete</button> </td>
+                            <td><button asp-controller="Dept" asp-action="Tempmethod" asp-route-id="@item.Id">Temp</button> </td>
 
-                </tr>
+                        </tr>
                     }
                     <tbody>
                     </tbody>
@@ -46,9 +48,21 @@
         <div class="card-footer">
             <a asp-controller="Dept" asp-action="Index">Back</a>
             <form>
-                <button asp-action="Delete" type="submit" >Delete</button>
+                <button asp-action="Delete" type="submit">Delete</button>
             </form>
         </div>
     </div>
 </div>
+@*Learning Reference https://www.w3schools.com/jquERy/jquery_ajax_get_post.asp*@
+<script>
+    $(document).ready(function () {
+        $("#test").click(function () {
+            console.log('clicked');
+            $.get("https://localhost:44330/api/Batch/GetList", function (data, status) {
+                var stringData = JSON.stringify(data);
+                alert("Data: " + stringData + "\nStatus: " + status);
+            });
+        });
+    });
+</script>
 
